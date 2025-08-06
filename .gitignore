@@ -1,0 +1,27 @@
+# Python 編譯後的暫存檔案
+__pycache__/
+*.py[cod]
+*$py.class
+
+# pip 虛擬環境資料夾（常見名稱）
+env/
+venv/
+
+# VS Code 編輯器設定
+.vscode/
+
+# 作業系統自動產生的隱藏檔案
+.DS_Store      # macOS
+Thumbs.db      # Windows
+
+# 日誌與暫存檔案
+*.log
+*.tmp
+
+# 機密設定檔（如 API 金鑰等環境變數）
+.env
+
+# 資料輸出資料夾（視專案情況加入）
+static/photos/
+static/videos/
+data/

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>410 資源已失效 | 410 GONE</title>
+    <style>
+        /* 導入 Google 字體 Noto Sans JP 和 Orbitron */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        /* 通用盒模型設置，確保佈局一致性 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 頁面主體樣式：字體、背景漸變、文字顏色、溢出處理、最小高度和定位 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            overflow: hidden; /* 防止滾動 */
+            min-height: 100vh; /* 佔滿整個視窗高度 */
+            position: relative;
+            display: flex; /* 使用 flexbox 居中內容 */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* 星星背景效果容器 */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 允許點擊穿透 */
+            z-index: 1;
+        }
+        
+        /* 單個星星樣式和動畫 */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        /* 星星閃爍動畫 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* 錯誤內容容器 */
+        .error-container {
+            position: relative;
+            z-index: 10; /* 確保在星星之上 */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%; /* 確保響應式寬度 */
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* 內容淡入動畫 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 錯誤代碼樣式 */
+        .error-code {
+            font-family: 'Orbitron', monospace;
+            font-size: 6rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* 文字漸變動畫 */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 錯誤標題樣式 */
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 20px;
+        }
+
+        /* 錯誤訊息樣式 */
+        .error-message {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* 返回按鈕樣式 */
+        .back-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* 返回按鈕懸停效果 */
+        .back-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        /* 響應式媒體查詢 */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            .error-title {
+                font-size: 1.8rem;
+            }
+            .error-message {
+                font-size: 1rem;
+            }
+            .back-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            .error-container {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 3rem;
+            }
+            .error-title {
+                font-size: 1.5rem;
+            }
+            .error-message {
+                font-size: 0.9rem;
+            }
+            .back-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景星星效果容器 -->
+    <div class="stars"></div>
+    
+    <!-- 錯誤內容區塊 -->
+    <div class="error-container">
+        <div class="error-code">410</div>
+        <h1 class="error-title">資源已失效 (Gone)</h1>
+        <p class="error-message">
+            很抱歉，您嘗試訪問的頁面或回憶片段已經被永久移除，<br>
+            它可能已經隨著時間的流逝而消逝在數位的宇宙中。
+        </p>
+    </div>
+    
+    <script>
+        /**
+         * 創建指定數量的閃爍星星作為背景。
+         */
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // 文件載入完成後啟動應用程式
+        document.addEventListener('DOMContentLoaded', createStars);
+    </script>
+</body>
+</html>
